@@ -1,0 +1,11 @@
+{
+  "name": "postgresql-shell",
+  "version": "1.0.0",
+  "description": "A simple postgresql shell",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Joshua Kohler",
+  "license": "ISC"
+}
