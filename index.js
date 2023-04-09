@@ -1,9 +1,10 @@
-require('dotenv').config(); // Add this line to the top of the file
-
 const { Pool } = require('pg');
 const readline = require('readline');
 
-// Use environment variables for the PostgreSQL connection configuration
+//Init environment vars 
+require('dotenv').config();
+
+//Psql connection
 const pool = new Pool({
   host: process.env.PG_HOST,
   port: process.env.PG_PORT,
@@ -12,13 +13,13 @@ const pool = new Pool({
   database: process.env.PG_DATABASE,
 });
 
-// Create a readline interface for user input
+//User input
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-function runQuery(query) {
+const  runQuery = (query) => {
   return pool.query(query)
     .then((res) => {
       console.log('Result:');
@@ -31,12 +32,13 @@ function runQuery(query) {
     });
 }
 
-function prompt() {
+const prompt = () => {
   rl.question('postgres-shell> ', (query) => {
     if (query === '\\q' || query === 'exit') {
       rl.close();
       pool.end();
-    } else {
+    }
+    else {
       runQuery(query);
     }
   });
